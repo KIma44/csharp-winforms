@@ -35,21 +35,23 @@
             this.listViewSchedule = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.labelTotal = new System.Windows.Forms.Label();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.labelTotalCost = new System.Windows.Forms.Label();
             this.btnDeleteSchedule = new System.Windows.Forms.Button();
             this.btnUpdateSchedule = new System.Windows.Forms.Button();
+            this.textBoxCost = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(102, 174);
+            this.monthCalendar1.Location = new System.Drawing.Point(18, 174);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
             this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // textBoxSchedule
             // 
-            this.textBoxSchedule.Location = new System.Drawing.Point(165, 123);
+            this.textBoxSchedule.Location = new System.Drawing.Point(18, 120);
             this.textBoxSchedule.Name = "textBoxSchedule";
             this.textBoxSchedule.Size = new System.Drawing.Size(128, 21);
             this.textBoxSchedule.TabIndex = 1;
@@ -66,7 +68,7 @@
             // 
             // btnAddSchedule
             // 
-            this.btnAddSchedule.Location = new System.Drawing.Point(361, 174);
+            this.btnAddSchedule.Location = new System.Drawing.Point(141, 32);
             this.btnAddSchedule.Name = "btnAddSchedule";
             this.btnAddSchedule.Size = new System.Drawing.Size(75, 23);
             this.btnAddSchedule.TabIndex = 3;
@@ -79,13 +81,14 @@
             this.listViewSchedule.CheckBoxes = true;
             this.listViewSchedule.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2});
+            this.columnHeader2,
+            this.columnHeader3});
             this.listViewSchedule.FullRowSelect = true;
             this.listViewSchedule.GridLines = true;
             this.listViewSchedule.HideSelection = false;
-            this.listViewSchedule.Location = new System.Drawing.Point(472, 141);
+            this.listViewSchedule.Location = new System.Drawing.Point(361, 120);
             this.listViewSchedule.Name = "listViewSchedule";
-            this.listViewSchedule.Size = new System.Drawing.Size(201, 259);
+            this.listViewSchedule.Size = new System.Drawing.Size(367, 285);
             this.listViewSchedule.TabIndex = 4;
             this.listViewSchedule.UseCompatibleStateImageBehavior = false;
             this.listViewSchedule.View = System.Windows.Forms.View.Details;
@@ -99,20 +102,28 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "일정";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader2.Width = 120;
             // 
-            // labelTotal
+            // columnHeader3
             // 
-            this.labelTotal.AutoSize = true;
-            this.labelTotal.Location = new System.Drawing.Point(644, 87);
-            this.labelTotal.Name = "labelTotal";
-            this.labelTotal.Size = new System.Drawing.Size(29, 12);
-            this.labelTotal.TabIndex = 5;
-            this.labelTotal.Text = "총합";
+            this.columnHeader3.Text = "지출 금액";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 120;
+            // 
+            // labelTotalCost
+            // 
+            this.labelTotalCost.AutoSize = true;
+            this.labelTotalCost.Location = new System.Drawing.Point(644, 87);
+            this.labelTotalCost.Name = "labelTotalCost";
+            this.labelTotalCost.Size = new System.Drawing.Size(59, 12);
+            this.labelTotalCost.TabIndex = 5;
+            this.labelTotalCost.Text = "총합 : 0원";
+            this.labelTotalCost.Click += new System.EventHandler(this.labelTotal_Click);
             // 
             // btnDeleteSchedule
             // 
-            this.btnDeleteSchedule.Location = new System.Drawing.Point(361, 220);
+            this.btnDeleteSchedule.Location = new System.Drawing.Point(237, 32);
             this.btnDeleteSchedule.Name = "btnDeleteSchedule";
             this.btnDeleteSchedule.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteSchedule.TabIndex = 6;
@@ -122,7 +133,7 @@
             // 
             // btnUpdateSchedule
             // 
-            this.btnUpdateSchedule.Location = new System.Drawing.Point(361, 271);
+            this.btnUpdateSchedule.Location = new System.Drawing.Point(361, 32);
             this.btnUpdateSchedule.Name = "btnUpdateSchedule";
             this.btnUpdateSchedule.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateSchedule.TabIndex = 7;
@@ -130,14 +141,23 @@
             this.btnUpdateSchedule.UseVisualStyleBackColor = true;
             this.btnUpdateSchedule.Click += new System.EventHandler(this.btnUpdateSchedule_Click);
             // 
+            // textBoxCost
+            // 
+            this.textBoxCost.Location = new System.Drawing.Point(506, 34);
+            this.textBoxCost.Name = "textBoxCost";
+            this.textBoxCost.Size = new System.Drawing.Size(100, 21);
+            this.textBoxCost.TabIndex = 8;
+            this.textBoxCost.Text = "지출 금액";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBoxCost);
             this.Controls.Add(this.btnUpdateSchedule);
             this.Controls.Add(this.btnDeleteSchedule);
-            this.Controls.Add(this.labelTotal);
+            this.Controls.Add(this.labelTotalCost);
             this.Controls.Add(this.listViewSchedule);
             this.Controls.Add(this.btnAddSchedule);
             this.Controls.Add(this.dateTimePicker1);
@@ -158,11 +178,13 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnAddSchedule;
         private System.Windows.Forms.ListView listViewSchedule;
-        private System.Windows.Forms.Label labelTotal;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button btnDeleteSchedule;
         private System.Windows.Forms.Button btnUpdateSchedule;
+        private System.Windows.Forms.TextBox textBoxCost;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Label labelTotalCost;
     }
 }
 

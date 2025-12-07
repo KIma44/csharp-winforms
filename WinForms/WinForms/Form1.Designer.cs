@@ -40,6 +40,8 @@
             this.btnDeleteSchedule = new System.Windows.Forms.Button();
             this.btnUpdateSchedule = new System.Windows.Forms.Button();
             this.textBoxCost = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // monthCalendar1
@@ -51,11 +53,10 @@
             // 
             // textBoxSchedule
             // 
-            this.textBoxSchedule.Location = new System.Drawing.Point(18, 120);
+            this.textBoxSchedule.Location = new System.Drawing.Point(166, 87);
             this.textBoxSchedule.Name = "textBoxSchedule";
             this.textBoxSchedule.Size = new System.Drawing.Size(128, 21);
             this.textBoxSchedule.TabIndex = 1;
-            this.textBoxSchedule.Text = "일정을 입력하세요";
             this.textBoxSchedule.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // dateTimePicker1
@@ -143,17 +144,36 @@
             // 
             // textBoxCost
             // 
-            this.textBoxCost.Location = new System.Drawing.Point(506, 34);
+            this.textBoxCost.Location = new System.Drawing.Point(688, 32);
             this.textBoxCost.Name = "textBoxCost";
             this.textBoxCost.Size = new System.Drawing.Size(100, 21);
             this.textBoxCost.TabIndex = 8;
-            this.textBoxCost.Text = "지출 금액";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 90);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(117, 12);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "일정을 입력하세요 : ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(600, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 12);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "지출금액 :";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxCost);
             this.Controls.Add(this.btnUpdateSchedule);
             this.Controls.Add(this.btnDeleteSchedule);
@@ -185,6 +205,8 @@
         private System.Windows.Forms.TextBox textBoxCost;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Label labelTotalCost;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

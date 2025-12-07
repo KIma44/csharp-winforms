@@ -24,18 +24,17 @@ namespace WinForms
         {
             dateTimePicker1.Value = monthCalendar1.SelectionStart;
 
-            // 오늘 일정 불러오기
             LoadSchedules(monthCalendar1.SelectionStart);
             LoadTotalCost();
-
 
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-            LoadMonthlyTotalCost(e.Start);
+
             dateTimePicker1.Value = monthCalendar1.SelectionStart;
             LoadSchedules(monthCalendar1.SelectionStart);
+            LoadTotalCost();
         }
 
         private void btnAddSchedule_Click(object sender, EventArgs e)
@@ -59,6 +58,7 @@ namespace WinForms
             textBoxSchedule.Clear();
             textBoxCost.Clear();
             LoadTotalCost();
+
         }
 
         private void LoadSchedules(DateTime date)
@@ -72,7 +72,8 @@ namespace WinForms
 
                 string sql = "SELECT schedule, cost FROM schedules WHERE date = @date";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@date", date.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@date", date.Date);
+
 
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -85,7 +86,7 @@ namespace WinForms
                 }
             }
         }
-
+        
         // 일정 추가
         private void AddScheduleToDB(string date, string schedule)
         {
@@ -97,16 +98,13 @@ namespace WinForms
                 string sql = "INSERT INTO schedules(date, schedule, cost) VALUES(@date, @schedule, @cost)";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                // 날짜
-                cmd.Parameters.AddWithValue("@date", date);
+                // 인자로 들어온 date 사용
+                cmd.Parameters.AddWithValue("@date", DateTime.Parse(date).Date);
 
-                // 일정 내용
                 cmd.Parameters.AddWithValue("@schedule", schedule);
 
-                // 비용
                 int cost = 0;
-                if (!string.IsNullOrWhiteSpace(textBoxCost.Text))
-                    int.TryParse(textBoxCost.Text, out cost);
+                int.TryParse(textBoxCost.Text.Trim(), out cost);
 
                 cmd.Parameters.AddWithValue("@cost", cost);
 
@@ -124,7 +122,7 @@ namespace WinForms
 
                 string sql = "DELETE FROM schedules WHERE date = @date AND schedule = @schedule LIMIT 1";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@date", date);
+                cmd.Parameters.AddWithValue("@date", DateTime.Parse(date).ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@schedule", schedule);
 
                 cmd.ExecuteNonQuery();
@@ -152,7 +150,7 @@ namespace WinForms
             LoadSchedules(DateTime.Parse(date));
 
             MessageBox.Show("일정이 삭제되었습니다.");
-            LoadTotalCost();
+            
         }
         // 수정 DB쪽 
         private void UpdateScheduleInDB(string date, string oldSchedule, string newSchedule, int newCost)
@@ -169,7 +167,7 @@ namespace WinForms
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@newSchedule", newSchedule);
                 cmd.Parameters.AddWithValue("@newCost", newCost);
-                cmd.Parameters.AddWithValue("@date", date);
+                cmd.Parameters.AddWithValue("@date", DateTime.Parse(date).Date);
                 cmd.Parameters.AddWithValue("@oldSchedule", oldSchedule);
 
                 cmd.ExecuteNonQuery();
@@ -192,7 +190,7 @@ namespace WinForms
                 return;
             }
 
-            // 🔥 새 cost 값 읽기
+            //  새 cost 값 읽기
             int newCost = 0;
             if (!string.IsNullOrWhiteSpace(textBoxCost.Text))
                 int.TryParse(textBoxCost.Text, out newCost);
@@ -211,7 +209,7 @@ namespace WinForms
             MessageBox.Show("일정이 수정되었습니다.");
             textBoxSchedule.Clear();
             textBoxCost.Clear();
-            LoadTotalCost();
+           
         }
 
         private void listViewSchedule_SelectedIndexChanged(object sender, EventArgs e)
@@ -238,47 +236,32 @@ namespace WinForms
             {
                 conn.Open();
 
-                string sql = "SELECT SUM(cost) FROM schedules";
+                DateTime selected = dateTimePicker1.Value;
+
+                string sql = @"
+            SELECT SUM(cost) 
+            FROM schedules
+            WHERE YEAR(date) = @year AND MONTH(date) = @month
+        ";
+
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@year", selected.Year);
+                cmd.Parameters.AddWithValue("@month", selected.Month);
 
                 object result = cmd.ExecuteScalar();
 
                 int total = (result != DBNull.Value) ? Convert.ToInt32(result) : 0;
 
-                labelTotalCost.Text = total.ToString() + "원";   // ← labelTotal 을 네가 만든 Label 이름으로!
+                labelTotalCost.Text = $"{selected.Month}월 총 지출 금액: {total}원";
+
             }
         }
-
-        private void LoadMonthlyTotalCost(DateTime selectedDate)
-        {
-            string connStr = "Server=localhost;Database=money_calendar;Uid=root;Pwd=1q2w3e4r;Charset=utf8;";
-
-            using (MySqlConnection conn = new MySqlConnection(connStr))
-            {
-                conn.Open();
-
-                string year = selectedDate.Year.ToString();
-                string month = selectedDate.Month.ToString("00");
-
-                string sql = "SELECT SUM(cost) FROM schedules WHERE DATE_FORMAT(date, '%Y-%m') = @yearMonth";
-
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@yearMonth", year + "-" + month);
-
-                object result = cmd.ExecuteScalar();
-                int total = (result != DBNull.Value) ? Convert.ToInt32(result) : 0;
-
-                labelTotalCost.Text = total + "원";  // ← 네 라벨 이름 맞춰서 변경
-            }
-        }
-
 
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            LoadMonthlyTotalCost(dateTimePicker1.Value);
+            LoadTotalCost();
         }
-
 
     }
 }

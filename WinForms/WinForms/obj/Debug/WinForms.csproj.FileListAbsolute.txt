@@ -34,10 +34,11 @@ C:\Users\alfm1\OneDrive\바탕 화면\C# 프로젝트\WinForms\WinForms\bin\Debu
 C:\Users\alfm1\OneDrive\바탕 화면\C# 프로젝트\WinForms\WinForms\obj\Debug\WinForms.csproj.AssemblyReference.cache
 C:\Users\alfm1\OneDrive\바탕 화면\C# 프로젝트\WinForms\WinForms\obj\Debug\WinForms.Form1.resources
 C:\Users\alfm1\OneDrive\바탕 화면\C# 프로젝트\WinForms\WinForms\obj\Debug\WinForms.Home.resources
-C:\Users\alfm1\OneDrive\바탕 화면\C# 프로젝트\WinForms\WinForms\obj\Debug\WinForms.Login.resources
 C:\Users\alfm1\OneDrive\바탕 화면\C# 프로젝트\WinForms\WinForms\obj\Debug\WinForms.Properties.Resources.resources
 C:\Users\alfm1\OneDrive\바탕 화면\C# 프로젝트\WinForms\WinForms\obj\Debug\WinForms.csproj.GenerateResource.cache
 C:\Users\alfm1\OneDrive\바탕 화면\C# 프로젝트\WinForms\WinForms\obj\Debug\WinForms.csproj.CoreCompileInputs.cache
 C:\Users\alfm1\OneDrive\바탕 화면\C# 프로젝트\WinForms\WinForms\obj\Debug\WinForms.csproj.Up2Date
 C:\Users\alfm1\OneDrive\바탕 화면\C# 프로젝트\WinForms\WinForms\obj\Debug\WinForms.exe
 C:\Users\alfm1\OneDrive\바탕 화면\C# 프로젝트\WinForms\WinForms\obj\Debug\WinForms.pdb
+C:\Users\alfm1\OneDrive\바탕 화면\C# 프로젝트\WinForms\WinForms\obj\Debug\WinForms.SignUp.resources
+C:\Users\alfm1\OneDrive\바탕 화면\C# 프로젝트\WinForms\WinForms\obj\Debug\WinForms.Login.resources

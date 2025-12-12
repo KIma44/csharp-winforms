@@ -19,15 +19,15 @@ namespace WinForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
+            Login sign = new Login();
+            sign.Show();
             this.Hide();  // 홈 화면 숨김
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SignUp sign = new SignUp();
-            sign.Show();
+            SignUp login = new SignUp();
+            login.Show();
             this.Hide();
         }
 

@@ -21,37 +21,40 @@ namespace WinForms
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string email = txtEmailLogin.Text.Trim();
-            string pw = txtPwLogin.Text.Trim();
+            string password = txtPwLogin.Text.Trim();
 
-            if (email == "" || pw == "")
-            {
-                MessageBox.Show("이메일과 비밀번호를 입력하세요.");
-                return;
-            }
+            string connStr = "Server=localhost;Database=money_calendar;Uid=root;Pwd=1q2w3e4r;Charset=utf8;";
 
-            using (MySqlConnection conn = new MySqlConnection("server=localhost;user=root;password=1q2w3e4r;database=money_calendar;"))
+            using (MySqlConnection conn = new MySqlConnection(connStr))
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand(
-                    "SELECT name FROM user WHERE email = @email AND password = @pw", conn);
+                string sql = @"
+            SELECT id, name
+            FROM user
+            WHERE email = @email AND password = @password";
 
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@pw", pw);
+                cmd.Parameters.AddWithValue("@password", password);
 
-                var nickname = cmd.ExecuteScalar();
+                MySqlDataReader reader = cmd.ExecuteReader();
 
-                if (nickname == null)
+                if (reader.Read())
                 {
-                    MessageBox.Show("로그인 실패. 이메일 또는 비밀번호가 틀렸습니다.");
-                    return;
+                    int userId = reader.GetInt32("id");
+                    string userName = reader.GetString("name");
+
+                    MessageBox.Show("로그인 성공");
+
+                    Form1 form = new Form1(userId, userName);
+                    form.Show();
+                    this.Hide();
                 }
-
-                MessageBox.Show($"{nickname}님 환영합니다!");
-
-                Form1 form1 = new Form1();
-                form1.Show();
-                this.Close();
+                else
+                {
+                    MessageBox.Show("이메일 또는 비밀번호가 틀렸습니다.");
+                }
             }
         }
     }

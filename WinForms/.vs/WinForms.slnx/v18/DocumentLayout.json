@@ -3,6 +3,30 @@
   "WorkspaceRootPath": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\dailylimit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\dailylimit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\usersession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\usersession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,36 +35,16 @@
       "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|c:\\users\\alfm1\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\c# \uD504\uB85C\uC81D\uD2B8\\winforms\\winforms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|c:\\users\\alfm1\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\c# \uD504\uB85C\uC81D\uD2B8\\winforms\\winforms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\winforms\\dbuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4DA5FE2B-2D74-410E-AF3C-9D67EE93E33D}|WinForms\\WinForms.csproj|solutionrelative:winforms\\dbuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,11 +54,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "DBConnection.cs",
               "DocumentMoniker": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\DBConnection.cs",
               "RelativeDocumentMoniker": "WinForms\\DBConnection.cs",
@@ -63,7 +67,8 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-28T12:50:40.809Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -79,30 +84,70 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Home.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\Home.cs",
+              "RelativeDocumentMoniker": "WinForms\\Home.cs",
+              "ToolTip": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\Home.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "WinForms\\Home.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-13T11:55:14.495Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DailyLimit.cs",
+              "DocumentMoniker": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\DailyLimit.cs",
+              "RelativeDocumentMoniker": "WinForms\\DailyLimit.cs",
+              "ToolTip": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\DailyLimit.cs",
+              "RelativeToolTip": "WinForms\\DailyLimit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvxUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-13T11:06:57.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserSession.cs",
+              "DocumentMoniker": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\UserSession.cs",
+              "RelativeDocumentMoniker": "WinForms\\UserSession.cs",
+              "ToolTip": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\UserSession.cs",
+              "RelativeToolTip": "WinForms\\UserSession.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvxAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-13T06:23:09.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Login.cs",
               "DocumentMoniker": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\Login.cs",
               "RelativeDocumentMoniker": "WinForms\\Login.cs",
               "ToolTip": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\Login.cs",
               "RelativeToolTip": "WinForms\\Login.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAIwCoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAAIwCEAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-12T07:00:45.963Z"
+              "WhenOpened": "2025-12-12T07:00:45.963Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Login.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\Login.cs",
               "RelativeDocumentMoniker": "WinForms\\Login.cs",
               "ToolTip": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\Login.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "WinForms\\Login.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-12T06:46:52.751Z"
+              "WhenOpened": "2025-12-12T06:46:52.751Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "SignUp.cs",
               "DocumentMoniker": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\SignUp.cs",
               "RelativeDocumentMoniker": "WinForms\\SignUp.cs",
@@ -115,7 +160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "SignUp.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\SignUp.cs",
               "RelativeDocumentMoniker": "WinForms\\SignUp.cs",
@@ -127,43 +172,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\Program.cs",
-              "RelativeDocumentMoniker": "WinForms\\Program.cs",
-              "ToolTip": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\Program.cs",
-              "RelativeToolTip": "WinForms\\Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAIwBEAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-11T12:33:59.697Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Home.cs",
               "DocumentMoniker": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\Home.cs",
               "RelativeDocumentMoniker": "WinForms\\Home.cs",
               "ToolTip": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\Home.cs",
               "RelativeToolTip": "WinForms\\Home.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAIA9wBQAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAADgvy4AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-11T12:30:23.503Z"
+              "WhenOpened": "2025-12-11T12:30:23.503Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "DBUser.cs",
-              "DocumentMoniker": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\DBUser.cs",
-              "RelativeDocumentMoniker": "WinForms\\DBUser.cs",
-              "ToolTip": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\DBUser.cs",
-              "RelativeToolTip": "WinForms\\DBUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvxAAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-11T09:35:01.917Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Form1.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\Form1.cs",
               "RelativeDocumentMoniker": "WinForms\\Form1.cs",
@@ -175,15 +197,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\Form1.cs",
               "RelativeDocumentMoniker": "WinForms\\Form1.cs",
               "ToolTip": "C:\\Users\\alfm1\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\C# \uD504\uB85C\uC81D\uD2B8\\WinForms\\WinForms\\Form1.cs",
               "RelativeToolTip": "WinForms\\Form1.cs",
-              "ViewState": "AgIAALEAAAAAAAAAAADwv98AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-28T12:29:02.111Z"
+              "WhenOpened": "2025-11-28T12:29:02.111Z",
+              "EditorCaption": ""
             }
           ]
         }

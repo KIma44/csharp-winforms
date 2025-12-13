@@ -8,9 +8,9 @@ namespace WinForms
 {
     internal static class Program
     {
-        /// <summary>
-        /// 해당 애플리케이션의 주 진입점입니다.
-        /// </summary>
+        public static bool IsLoggedIn = false;
+        public static bool IsGuest = false;
+        public static string UserId = "";
         [STAThread]
         static void Main()
         {

@@ -36,6 +36,15 @@ namespace WinForms
 
         }
 
-        
+        private void btnGuestLogin_Click(object sender, EventArgs e)
+        {
+            Program.IsLoggedIn = false;
+            Program.IsGuest = true;
+            Program.UserId = "GUEST";
+
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide();
+        }
     }
 }

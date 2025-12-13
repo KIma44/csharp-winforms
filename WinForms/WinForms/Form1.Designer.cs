@@ -42,34 +42,37 @@
             this.textBoxCost = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(18, 174);
+            this.monthCalendar1.Location = new System.Drawing.Point(92, 223);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
             this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // textBoxSchedule
             // 
-            this.textBoxSchedule.Location = new System.Drawing.Point(166, 87);
+            this.textBoxSchedule.Location = new System.Drawing.Point(237, 425);
             this.textBoxSchedule.Name = "textBoxSchedule";
-            this.textBoxSchedule.Size = new System.Drawing.Size(128, 21);
+            this.textBoxSchedule.Size = new System.Drawing.Size(216, 21);
             this.textBoxSchedule.TabIndex = 1;
             this.textBoxSchedule.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(406, 78);
+            this.dateTimePicker1.Location = new System.Drawing.Point(118, 175);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 21);
+            this.dateTimePicker1.Size = new System.Drawing.Size(176, 21);
             this.dateTimePicker1.TabIndex = 2;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // btnAddSchedule
             // 
-            this.btnAddSchedule.Location = new System.Drawing.Point(141, 32);
+            this.btnAddSchedule.Location = new System.Drawing.Point(476, 125);
             this.btnAddSchedule.Name = "btnAddSchedule";
             this.btnAddSchedule.Size = new System.Drawing.Size(75, 23);
             this.btnAddSchedule.TabIndex = 3;
@@ -87,9 +90,9 @@
             this.listViewSchedule.FullRowSelect = true;
             this.listViewSchedule.GridLines = true;
             this.listViewSchedule.HideSelection = false;
-            this.listViewSchedule.Location = new System.Drawing.Point(361, 120);
+            this.listViewSchedule.Location = new System.Drawing.Point(476, 197);
             this.listViewSchedule.Name = "listViewSchedule";
-            this.listViewSchedule.Size = new System.Drawing.Size(367, 285);
+            this.listViewSchedule.Size = new System.Drawing.Size(444, 473);
             this.listViewSchedule.TabIndex = 4;
             this.listViewSchedule.UseCompatibleStateImageBehavior = false;
             this.listViewSchedule.View = System.Windows.Forms.View.Details;
@@ -115,7 +118,7 @@
             // labelTotalCost
             // 
             this.labelTotalCost.AutoSize = true;
-            this.labelTotalCost.Location = new System.Drawing.Point(644, 87);
+            this.labelTotalCost.Location = new System.Drawing.Point(35, 108);
             this.labelTotalCost.Name = "labelTotalCost";
             this.labelTotalCost.Size = new System.Drawing.Size(59, 12);
             this.labelTotalCost.TabIndex = 5;
@@ -124,7 +127,7 @@
             // 
             // btnDeleteSchedule
             // 
-            this.btnDeleteSchedule.Location = new System.Drawing.Point(237, 32);
+            this.btnDeleteSchedule.Location = new System.Drawing.Point(845, 125);
             this.btnDeleteSchedule.Name = "btnDeleteSchedule";
             this.btnDeleteSchedule.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteSchedule.TabIndex = 6;
@@ -134,7 +137,7 @@
             // 
             // btnUpdateSchedule
             // 
-            this.btnUpdateSchedule.Location = new System.Drawing.Point(361, 32);
+            this.btnUpdateSchedule.Location = new System.Drawing.Point(655, 125);
             this.btnUpdateSchedule.Name = "btnUpdateSchedule";
             this.btnUpdateSchedule.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateSchedule.TabIndex = 7;
@@ -144,15 +147,15 @@
             // 
             // textBoxCost
             // 
-            this.textBoxCost.Location = new System.Drawing.Point(688, 32);
+            this.textBoxCost.Location = new System.Drawing.Point(237, 514);
             this.textBoxCost.Name = "textBoxCost";
-            this.textBoxCost.Size = new System.Drawing.Size(100, 21);
+            this.textBoxCost.Size = new System.Drawing.Size(216, 21);
             this.textBoxCost.TabIndex = 8;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 90);
+            this.label1.Location = new System.Drawing.Point(90, 434);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(117, 12);
             this.label1.TabIndex = 11;
@@ -161,17 +164,47 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(600, 35);
+            this.label2.Location = new System.Drawing.Point(116, 523);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 12);
             this.label2.TabIndex = 12;
             this.label2.Text = "지출금액 :";
             // 
+            // btnLogout
+            // 
+            this.btnLogout.Location = new System.Drawing.Point(1104, 12);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.TabIndex = 13;
+            this.btnLogout.Text = "로그아웃";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1001, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "로그인";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Location = new System.Drawing.Point(22, 12);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(0, 12);
+            this.lblUserName.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1191, 723);
+            this.Controls.Add(this.lblUserName);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxCost);
@@ -207,6 +240,9 @@
         private System.Windows.Forms.Label labelTotalCost;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblUserName;
     }
 }
 

@@ -112,6 +112,7 @@
             this.txtPw2.Name = "txtPw2";
             this.txtPw2.Size = new System.Drawing.Size(151, 21);
             this.txtPw2.TabIndex = 8;
+            this.txtPw2.UseSystemPasswordChar = true;
             // 
             // SignUp
             // 

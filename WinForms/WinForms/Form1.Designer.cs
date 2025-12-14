@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.textBoxSchedule = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -43,8 +44,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.lblUserName = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBoxBudget = new System.Windows.Forms.TextBox();
+            this.btnSaveBudget = new System.Windows.Forms.Button();
+            this.labelBudgetStatus = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // monthCalendar1
@@ -147,10 +153,14 @@
             // 
             // textBoxCost
             // 
+            this.textBoxCost.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.textBoxCost.Location = new System.Drawing.Point(237, 514);
             this.textBoxCost.Name = "textBoxCost";
             this.textBoxCost.Size = new System.Drawing.Size(216, 21);
             this.textBoxCost.TabIndex = 8;
+            this.textBoxCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxCost.TextChanged += new System.EventHandler(this.textBoxCost_TextChanged);
+            this.textBoxCost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCost_KeyPress);
             // 
             // label1
             // 
@@ -180,14 +190,15 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // button1
+            // btnLogin
             // 
-            this.button1.Location = new System.Drawing.Point(1001, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "로그인";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnLogin.Location = new System.Drawing.Point(1104, 12);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(75, 23);
+            this.btnLogin.TabIndex = 14;
+            this.btnLogin.Text = "로그인";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // lblUserName
             // 
@@ -197,13 +208,53 @@
             this.lblUserName.Size = new System.Drawing.Size(0, 12);
             this.lblUserName.TabIndex = 15;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1132, 672);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(57, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // textBoxBudget
+            // 
+            this.textBoxBudget.Location = new System.Drawing.Point(441, 50);
+            this.textBoxBudget.Name = "textBoxBudget";
+            this.textBoxBudget.Size = new System.Drawing.Size(100, 21);
+            this.textBoxBudget.TabIndex = 17;
+            // 
+            // btnSaveBudget
+            // 
+            this.btnSaveBudget.Location = new System.Drawing.Point(568, 55);
+            this.btnSaveBudget.Name = "btnSaveBudget";
+            this.btnSaveBudget.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveBudget.TabIndex = 18;
+            this.btnSaveBudget.Text = "저장";
+            this.btnSaveBudget.UseVisualStyleBackColor = true;
+            // 
+            // labelBudgetStatus
+            // 
+            this.labelBudgetStatus.AutoSize = true;
+            this.labelBudgetStatus.Location = new System.Drawing.Point(328, 53);
+            this.labelBudgetStatus.Name = "labelBudgetStatus";
+            this.labelBudgetStatus.Size = new System.Drawing.Size(29, 12);
+            this.labelBudgetStatus.TabIndex = 19;
+            this.labelBudgetStatus.Text = "      ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1191, 723);
+            this.Controls.Add(this.labelBudgetStatus);
+            this.Controls.Add(this.btnSaveBudget);
+            this.Controls.Add(this.textBoxBudget);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblUserName);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -219,6 +270,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,8 +293,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBoxBudget;
+        private System.Windows.Forms.Button btnSaveBudget;
+        private System.Windows.Forms.Label labelBudgetStatus;
     }
 }
 

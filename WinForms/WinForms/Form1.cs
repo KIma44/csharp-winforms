@@ -28,22 +28,12 @@ namespace WinForms
         private int updateCount = 0;
         private DateTime lastActionDate = DateTime.Today;
 
-
-        public Form1(int userId, string userName)
-        {
-            InitializeComponent();
-            _userId = userId;
-            _userName = userName;
-            _isGuest = false;
-            UserSession.UserId = userId;
-            UserSession.UserName = userName;
-
-        }
-
         // 비회원
         public Form1()
         {
             InitializeComponent();
+            textBoxCost.KeyPress += textBoxCost_KeyPress;
+            textBoxCost.TextChanged += textBoxCost_TextChanged;
             _userId = null;
             _userName = "비회원";
             _isGuest = true;
@@ -52,10 +42,53 @@ namespace WinForms
             UserSession.UserName = "비회원";
         }
 
+        public Form1(int userId, string userName)
+        {
+            InitializeComponent();
+            textBoxCost.KeyPress += textBoxCost_KeyPress;
+            textBoxCost.TextChanged += textBoxCost_TextChanged;
+            _userId = userId;
+            _userName = userName;
+            _isGuest = false;
+
+            UserSession.UserId = userId;
+            UserSession.UserName = userName;
+
+            // ⭐ UserSession에 저장된 비회원 일정 사용
+            guestSchedules = UserSession.GuestSchedules ??
+                new List<(DateTime, string, int)>();
+
+            MoveGuestSchedulesToMember();
+        }
+
+
         private string connStr =
         "Server=localhost;Database=money_calendar;Uid=root;Pwd=1q2w3e4r;Charset=utf8;";
 
 
+        private void MoveGuestSchedulesToMember()
+        {
+            if (guestSchedules == null || guestSchedules.Count == 0)
+                return;
+
+            DialogResult result = MessageBox.Show(
+                "비회원 일정이 있습니다.\n회원 계정으로 저장할까요?",
+                "일정 이전",
+                MessageBoxButtons.YesNo
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                foreach (var s in guestSchedules)
+                {
+                    AddScheduleToDB(
+                        s.date.ToString("yyyy-MM-dd"),
+                        s.schedule, s.cost
+                    );
+                }
+                guestSchedules.Clear();
+            }
+        }
 
 
         private void ResetIfNewDay()
@@ -95,12 +128,20 @@ namespace WinForms
 
             if (_isGuest)
             {
+                // 비회원
                 labelTotalCost.Visible = false;
+
+                btnLogout.Visible = false;  // 로그아웃 숨김
+                btnLogin.Visible = true;    // 로그인 보이기
             }
             else
             {
+                // 회원
                 labelTotalCost.Visible = true;
                 LoadTotalCost();
+
+                btnLogout.Visible = true;   // 로그아웃 보이기
+                btnLogin.Visible = false;   // 로그인 숨김
             }
         }
 
@@ -108,9 +149,18 @@ namespace WinForms
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            listViewSchedule.CheckBoxes = true;
+            listViewSchedule.FullRowSelect = true;
+            listViewSchedule.MultiSelect = true;
+            listViewSchedule.View = View.Details;
+
             dateTimePicker1.Value = monthCalendar1.SelectionStart;
 
-            if (!_isGuest)
+            if (_isGuest)
+            {
+                LoadGuestSchedules(monthCalendar1.SelectionStart);
+            }
+            else
             {
                 LoadSchedules(monthCalendar1.SelectionStart);
                 LoadTotalCost();
@@ -124,7 +174,11 @@ namespace WinForms
 
             dateTimePicker1.Value = monthCalendar1.SelectionStart;
 
-            if (!_isGuest)
+            if (_isGuest)
+            {
+                LoadGuestSchedules(monthCalendar1.SelectionStart);
+            }
+            else
             {
                 LoadSchedules(monthCalendar1.SelectionStart);
                 LoadTotalCost();
@@ -139,7 +193,7 @@ namespace WinForms
             {
                 ListViewItem item = new ListViewItem(date.ToString("yyyy-MM-dd"));
                 item.SubItems.Add(s.schedule);
-                item.SubItems.Add(s.cost.ToString());
+                item.SubItems.Add("₩ " + s.cost.ToString("#,0"));
 
                 listViewSchedule.Items.Add(item);
             }
@@ -158,18 +212,17 @@ namespace WinForms
                 return;
             }
 
-            int cost = 0;
-            int.TryParse(textBoxCost.Text, out cost);
+            int cost = GetCostValue();
 
             if (_isGuest)
             {
-                // ✅ 비회원 → 로컬에만 저장
+                //  비회원 → 로컬에만 저장
                 guestSchedules.Add((date.Date, schedule, cost));
                 LoadGuestSchedules(date.Date);
             }
             else
             {
-                AddScheduleToDB(date.ToString("yyyy-MM-dd"), schedule);
+                AddScheduleToDB(date.ToString("yyyy-MM-dd"), schedule, cost);
                 LoadSchedules(date);
                 LoadTotalCost();
             }
@@ -200,7 +253,7 @@ namespace WinForms
                 {
                     ListViewItem item = new ListViewItem(date.ToString("yyyy-MM-dd"));
                     item.SubItems.Add(reader.GetString("schedule"));
-                    item.SubItems.Add(reader["cost"].ToString());
+                    item.SubItems.Add("₩ " + Convert.ToInt32(reader["cost"]).ToString("#,0"));
 
                     item.Tag = reader["id"];
 
@@ -211,47 +264,69 @@ namespace WinForms
         }
         
         // 일정 추가
-        private void AddScheduleToDB(string date, string schedule)
+        private void AddScheduleToDB(string date, string schedule, int cost)
         {
             if (_isGuest) return;
-            string connStr = "Server=localhost;Database=money_calendar;Uid=root;Pwd=1q2w3e4r;Charset=utf8;";
+
             using (MySqlConnection conn = new MySqlConnection(connStr))
             {
                 conn.Open();
 
-                string sql = "INSERT INTO schedules(user_id ,date, schedule, cost) VALUES(@userId, @date, @schedule, @cost)";
+                string sql = @"INSERT INTO schedules(user_id, date, schedule, cost)
+                       VALUES(@userId, @date, @schedule, @cost)";
+
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-                // 인자로 들어온 date 사용
-                cmd.Parameters.AddWithValue("@date", DateTime.Parse(date).Date);
-
-                cmd.Parameters.AddWithValue("@schedule", schedule);
-
-                int cost = 0;
-                int.TryParse(textBoxCost.Text.Trim(), out cost);
-
-                cmd.Parameters.AddWithValue("@cost", cost);
                 cmd.Parameters.AddWithValue("@userId", _userId);
+                cmd.Parameters.AddWithValue("@date", DateTime.Parse(date).Date);
+                cmd.Parameters.AddWithValue("@schedule", schedule);
+                cmd.Parameters.AddWithValue("@cost", cost);
 
                 cmd.ExecuteNonQuery();
             }
         }
 
-        // 삭제 DB
-        private void DeleteScheduleFromDB()
+        private void DeleteGuestSchedules()
         {
-            if (_isGuest) return;
+            var checkedIndexes = listViewSchedule.CheckedItems
+      .Cast<ListViewItem>()
+      .Select(item => item.Index)
+      .OrderByDescending(i => i)
+      .ToList();
+
+
+            foreach (int index in checkedIndexes)
+            {
+                guestSchedules.RemoveAt(index);
+            }
+
+            LoadGuestSchedules(dateTimePicker1.Value);
+        }
+
+        // 삭제 DB
+        private void DeleteScheduleFromDB(List<int> ids)
+        {
+            if (_isGuest || ids.Count == 0) return;
+
             using (MySqlConnection conn = new MySqlConnection(connStr))
-    {
+            {
                 conn.Open();
 
-                ListViewItem item = listViewSchedule.SelectedItems[0];
-                int id = (int)item.Tag;
+                // IN (@id1, @id2, ...)
+                string paramNames = string.Join(",",
+                    ids.Select((id, index) => $"@id{index}"));
 
-                string sql = "DELETE FROM schedules WHERE id = @id AND user_id = @userId";
+                string sql = $@"
+            DELETE FROM schedules
+            WHERE user_id = @userId
+            AND id IN ({paramNames})";
+
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@userId", _userId);
+
+                for (int i = 0; i < ids.Count; i++)
+                {
+                    cmd.Parameters.AddWithValue($"@id{i}", ids[i]);
+                }
 
                 cmd.ExecuteNonQuery();
             }
@@ -262,25 +337,40 @@ namespace WinForms
         {
             if (!CheckLimit(ref deleteCount)) return;
 
-            if (listViewSchedule.SelectedItems.Count == 0)
+            if (listViewSchedule.CheckedItems.Count == 0)
             {
                 MessageBox.Show("삭제할 일정을 선택하세요.");
                 return;
             }
 
+            DialogResult result = MessageBox.Show(
+                $"{listViewSchedule.CheckedItems.Count}개 일정을 삭제하시겠습니까?",
+                "삭제 확인",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (result != DialogResult.Yes) return;
+
             if (_isGuest)
             {
-                int index = listViewSchedule.SelectedItems[0].Index;
-                guestSchedules.RemoveAt(index);
-                LoadGuestSchedules(dateTimePicker1.Value);
+                DeleteGuestSchedules();
             }
             else
             {
-                DeleteScheduleFromDB();
+                List<int> ids = listViewSchedule.CheckedItems
+    .Cast<ListViewItem>()
+    .Select(item => (int)item.Tag)
+    .ToList();
+
+
+                DeleteScheduleFromDB(ids);
                 LoadSchedules(dateTimePicker1.Value);
                 LoadTotalCost();
-
             }
+
+            ClearInput();
+
         }
         // 수정 DB쪽 
         private void UpdateScheduleInDB(string newSchedule, int newCost)
@@ -318,8 +408,7 @@ namespace WinForms
             }
 
             string newSchedule = textBoxSchedule.Text.Trim();
-            int newCost = 0;
-            int.TryParse(textBoxCost.Text, out newCost);
+            int newCost = GetCostValue();
 
             if (_isGuest)
             {
@@ -335,6 +424,8 @@ namespace WinForms
                 LoadSchedules(dateTimePicker1.Value);
                 LoadTotalCost();
             }
+            ClearInput();
+
         }
 
         private void listViewSchedule_SelectedIndexChanged(object sender, EventArgs e)
@@ -344,7 +435,11 @@ namespace WinForms
                 ListViewItem item = listViewSchedule.SelectedItems[0];
                 dateTimePicker1.Value = DateTime.Parse(item.SubItems[0].Text);
                 textBoxSchedule.Text = item.SubItems[1].Text;
-                textBoxCost.Text = item.SubItems[2].Text;
+                textBoxCost.Text = item.SubItems[2].Text
+                .Replace("₩", "")
+                .Replace(",", "")
+                .Trim();
+
             }
         }
 
@@ -396,5 +491,79 @@ namespace WinForms
             this.Hide();
             new Home().Show();
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            // 비회원 일정 UserSession에 저장
+            if (_isGuest)
+            {
+                UserSession.GuestSchedules = guestSchedules;
+            }
+
+            this.Hide();
+            new Login().Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Home().Show();
+        }
+
+        private void textBoxCost_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxCost_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxCost.Text))
+                return;
+
+            // ₩, 콤마 제거
+            string numericText = textBoxCost.Text
+                .Replace("₩", "")
+                .Replace(",", "")
+                .Trim();
+
+            if (!int.TryParse(numericText, out int value))
+                return;
+
+            // ₩ + 천 단위 콤마
+            textBoxCost.Text = "₩ " + value.ToString("#,0");
+
+            // 커서 맨 뒤로
+            textBoxCost.SelectionStart = textBoxCost.Text.Length;
+        }
+
+
+        private int GetCostValue()
+        {
+            if (string.IsNullOrWhiteSpace(textBoxCost.Text))
+                return 0;
+
+            string text = textBoxCost.Text
+                .Replace("₩", "")
+                .Replace(",", "")
+                .Trim();
+
+            int.TryParse(text, out int cost);
+            return cost;
+        }
+private void ClearInput()
+{
+            textBoxSchedule.Clear();
+            textBoxCost.Clear();
+
+            foreach (ListViewItem item in listViewSchedule.Items)
+                item.Checked = false;
+
+            listViewSchedule.SelectedItems.Clear();
+        }
+
     }
 }
+

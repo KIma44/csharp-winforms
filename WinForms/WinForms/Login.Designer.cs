@@ -76,6 +76,7 @@
             this.txtPwLogin.Name = "txtPwLogin";
             this.txtPwLogin.Size = new System.Drawing.Size(154, 21);
             this.txtPwLogin.TabIndex = 4;
+            this.txtPwLogin.UseSystemPasswordChar = true;
             // 
             // Login
             // 

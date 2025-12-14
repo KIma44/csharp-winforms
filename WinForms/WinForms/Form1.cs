@@ -18,9 +18,11 @@ namespace WinForms
         private int? _userId;   // ⭐ nullable
         private string _userName;
         private bool _isGuest;
+        private int _monthlyBudget = 0;
+
 
         private List<(DateTime date, string schedule, int cost)> guestSchedules
-    = new List<(DateTime, string, int)>();
+         = new List<(DateTime, string, int)>();
 
         // 하루 제한
         private int addCount = 0;
@@ -59,6 +61,9 @@ namespace WinForms
                 new List<(DateTime, string, int)>();
 
             MoveGuestSchedulesToMember();
+
+            LoadMonthlyBudget(); // 로그인 시 기존 예산 불러오기
+            CheckBudgetWarning(); // 예산 상태 표시
         }
 
 
@@ -130,7 +135,7 @@ namespace WinForms
             {
                 // 비회원
                 labelTotalCost.Visible = false;
-
+                labelBudgetStatus.Visible = false; // 예산 숨김
                 btnLogout.Visible = false;  // 로그아웃 숨김
                 btnLogin.Visible = true;    // 로그인 보이기
             }
@@ -169,6 +174,35 @@ namespace WinForms
             UpdateUI();
         }
 
+        private void LoadMonthlyBudget()
+        {
+            if (_isGuest) return;
+
+            DateTime selected = dateTimePicker1.Value; // 현재 달 기준
+
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                conn.Open();
+
+                string sql = @"
+                            SELECT budget 
+                            FROM monthly_budget 
+                            WHERE user_id = @userId 
+                              AND year = @year 
+                              AND month = @month";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@userId", _userId);
+                cmd.Parameters.AddWithValue("@year", selected.Year);
+                cmd.Parameters.AddWithValue("@month", selected.Month);
+
+                object result = cmd.ExecuteScalar();
+                _monthlyBudget = (result != null) ? Convert.ToInt32(result) : 0;
+
+                textBoxBudget.Text = _monthlyBudget.ToString(); // 기존 예산 표시
+            }
+        }
+
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
 
@@ -181,7 +215,9 @@ namespace WinForms
             else
             {
                 LoadSchedules(monthCalendar1.SelectionStart);
+                LoadMonthlyBudget();   // 해당 달 예산 불러오기
                 LoadTotalCost();
+                CheckBudgetWarning();
             }
         }
 
@@ -225,6 +261,7 @@ namespace WinForms
                 AddScheduleToDB(date.ToString("yyyy-MM-dd"), schedule, cost);
                 LoadSchedules(date);
                 LoadTotalCost();
+                CheckBudgetWarning();
             }
 
             textBoxSchedule.Clear();
@@ -288,10 +325,10 @@ namespace WinForms
         private void DeleteGuestSchedules()
         {
             var checkedIndexes = listViewSchedule.CheckedItems
-      .Cast<ListViewItem>()
-      .Select(item => item.Index)
-      .OrderByDescending(i => i)
-      .ToList();
+                  .Cast<ListViewItem>()
+                  .Select(item => item.Index)
+                  .OrderByDescending(i => i)
+                  .ToList();
 
 
             foreach (int index in checkedIndexes)
@@ -316,9 +353,9 @@ namespace WinForms
                     ids.Select((id, index) => $"@id{index}"));
 
                 string sql = $@"
-            DELETE FROM schedules
-            WHERE user_id = @userId
-            AND id IN ({paramNames})";
+                            DELETE FROM schedules
+                            WHERE user_id = @userId
+                            AND id IN ({paramNames})";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@userId", _userId);
@@ -359,14 +396,15 @@ namespace WinForms
             else
             {
                 List<int> ids = listViewSchedule.CheckedItems
-    .Cast<ListViewItem>()
-    .Select(item => (int)item.Tag)
-    .ToList();
+                .Cast<ListViewItem>()
+                .Select(item => (int)item.Tag)
+                .ToList();
 
 
                 DeleteScheduleFromDB(ids);
                 LoadSchedules(dateTimePicker1.Value);
                 LoadTotalCost();
+                CheckBudgetWarning();
             }
 
             ClearInput();
@@ -376,26 +414,51 @@ namespace WinForms
         private void UpdateScheduleInDB(string newSchedule, int newCost)
         {
             if (_isGuest) return;
+
+            DateTime selected = dateTimePicker1.Value;
+
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                conn.Open();
+                string sql = @"
+            INSERT INTO monthly_budget (user_id, year, month, budget)
+            VALUES (@userId, @year, @month, @budget)
+            ON DUPLICATE KEY UPDATE budget = @budget";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@userId", _userId);
+                cmd.Parameters.AddWithValue("@year", selected.Year);
+                cmd.Parameters.AddWithValue("@month", selected.Month);
+                cmd.Parameters.AddWithValue("@budget", _monthlyBudget);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private void UpdateBudgetInDB()
+        {
+            if (_isGuest) return; // 비회원이면 저장 안 함
+
+            DateTime selected = dateTimePicker1.Value;
+
             using (MySqlConnection conn = new MySqlConnection(connStr))
             {
                 conn.Open();
 
-                ListViewItem item = listViewSchedule.SelectedItems[0];
-                int id = (int)item.Tag;
-
-                string sql = @"UPDATE schedules
-                       SET schedule = @newSchedule, cost = @newCost
-                       WHERE id = @id AND user_id = @userId";
+                string sql = @"
+            INSERT INTO monthly_budget (user_id, year, month, budget)
+            VALUES (@userId, @year, @month, @budget)
+            ON DUPLICATE KEY UPDATE budget = @budget";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@newSchedule", newSchedule);
-                cmd.Parameters.AddWithValue("@newCost", newCost);
-                cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@userId", _userId);
+                cmd.Parameters.AddWithValue("@year", selected.Year);
+                cmd.Parameters.AddWithValue("@month", selected.Month);
+                cmd.Parameters.AddWithValue("@budget", _monthlyBudget);
 
                 cmd.ExecuteNonQuery();
             }
         }
+
         // 버튼 수정
         private void btnUpdateSchedule_Click(object sender, EventArgs e)
         {
@@ -423,6 +486,7 @@ namespace WinForms
                 UpdateScheduleInDB(newSchedule, newCost);
                 LoadSchedules(dateTimePicker1.Value);
                 LoadTotalCost();
+                CheckBudgetWarning();
             }
             ClearInput();
 
@@ -460,11 +524,11 @@ namespace WinForms
                 DateTime selected = dateTimePicker1.Value;
 
                 string sql = @"
-            SELECT SUM(cost)
-            FROM schedules
-            WHERE user_id = @userId
-            AND YEAR(date) = @year
-            AND MONTH(date) = @month";
+                    SELECT SUM(cost)
+                    FROM schedules
+                    WHERE user_id = @userId
+                    AND YEAR(date) = @year
+                    AND MONTH(date) = @month";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@year", selected.Year);
@@ -553,8 +617,8 @@ namespace WinForms
             int.TryParse(text, out int cost);
             return cost;
         }
-private void ClearInput()
-{
+        private void ClearInput()
+        {
             textBoxSchedule.Clear();
             textBoxCost.Clear();
 
@@ -564,6 +628,133 @@ private void ClearInput()
             listViewSchedule.SelectedItems.Clear();
         }
 
+        private void CheckBudgetWarning()
+        {
+            if (_isGuest)
+            {
+                labelBudgetStatus.Visible = false; // 비회원이면 숨김
+                return;
+            }
+
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                conn.Open();
+
+                DateTime selected = dateTimePicker1.Value;
+
+                string sql = @"
+            SELECT SUM(cost)
+            FROM schedules
+            WHERE user_id = @userId
+            AND YEAR(date) = @year
+            AND MONTH(date) = @month";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@userId", _userId);
+                cmd.Parameters.AddWithValue("@year", selected.Year);
+                cmd.Parameters.AddWithValue("@month", selected.Month);
+
+                object result = cmd.ExecuteScalar();
+                int total = (result != DBNull.Value) ? Convert.ToInt32(result) : 0;
+
+                // 예산이 0이면 표시 안함
+                if (_monthlyBudget <= 0)
+                {
+                    labelBudgetStatus.Text = "";
+                    labelBudgetStatus.Visible = false;
+                    return;
+                }
+
+                labelBudgetStatus.Visible = true;
+
+                if (total > _monthlyBudget)
+                {
+                    labelBudgetStatus.Text = "⚠ 예산을 초과했습니다!";
+                    labelBudgetStatus.ForeColor = Color.Red;
+                }
+                else
+                {
+                    labelBudgetStatus.Text = "✔ 예산 내에서 사용 중";
+                    labelBudgetStatus.ForeColor = Color.Green;
+                }
+            }
+        }
+
+        private void textBoxBudget_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBoxBudget.Text, out int budget))
+            {
+                _monthlyBudget = budget;
+                CheckBudgetWarning();
+            }
+        }
+
+        private void btnSaveBudget_Click(object sender, EventArgs e)
+        {
+
+            if (_isGuest) return;
+
+            DateTime selected = dateTimePicker1.Value;
+            string input = textBoxBudget.Text.Trim();
+            int newBudget = _monthlyBudget;
+
+            if (!int.TryParse(input, out newBudget) || newBudget < 0)
+            {
+                MessageBox.Show("올바른 예산 금액을 입력하세요.");
+                return;
+            }
+
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                conn.Open();
+
+                string sql = @"
+            INSERT INTO monthly_budget (user_id, year, month, budget)
+            VALUES (@userId, @year, @month, @budget)
+            ON DUPLICATE KEY UPDATE budget = @budget"; // 이미 있으면 업데이트
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@userId", _userId);
+                cmd.Parameters.AddWithValue("@year", selected.Year);
+                cmd.Parameters.AddWithValue("@month", selected.Month);
+                cmd.Parameters.AddWithValue("@budget", newBudget);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            _monthlyBudget = newBudget;
+            MessageBox.Show("월 예산이 저장되었습니다.");
+            CheckBudgetWarning();
+        }
+
+        private void btnIncreaseBudget_Click(object sender, EventArgs e)
+        {
+            int amount = (int)numericBudgetStep.Value;
+            _monthlyBudget += amount;
+
+            textBoxBudget.Text = _monthlyBudget.ToString();
+            CheckBudgetWarning();
+            UpdateBudgetInDB(); // DB 반영
+        }
+
+      
+
+        private void numericBudgetStep_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDecreaseBudget_Click_1(object sender, EventArgs e)
+        {
+            int amount = (int)numericBudgetStep.Value;
+            _monthlyBudget -= amount;
+            if (_monthlyBudget < 0) _monthlyBudget = 0;
+
+            textBoxBudget.Text = _monthlyBudget.ToString();
+            CheckBudgetWarning();
+            UpdateBudgetInDB(); // DB 반영
+        }
     }
 }
+
 

@@ -50,7 +50,11 @@
             this.textBoxBudget = new System.Windows.Forms.TextBox();
             this.btnSaveBudget = new System.Windows.Forms.Button();
             this.labelBudgetStatus = new System.Windows.Forms.Label();
+            this.btnIncreaseBudget = new System.Windows.Forms.Button();
+            this.btnDecreaseBudget = new System.Windows.Forms.Button();
+            this.numericBudgetStep = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericBudgetStep)).BeginInit();
             this.SuspendLayout();
             // 
             // monthCalendar1
@@ -78,7 +82,7 @@
             // 
             // btnAddSchedule
             // 
-            this.btnAddSchedule.Location = new System.Drawing.Point(476, 125);
+            this.btnAddSchedule.Location = new System.Drawing.Point(974, 197);
             this.btnAddSchedule.Name = "btnAddSchedule";
             this.btnAddSchedule.Size = new System.Drawing.Size(75, 23);
             this.btnAddSchedule.TabIndex = 3;
@@ -133,7 +137,7 @@
             // 
             // btnDeleteSchedule
             // 
-            this.btnDeleteSchedule.Location = new System.Drawing.Point(845, 125);
+            this.btnDeleteSchedule.Location = new System.Drawing.Point(974, 362);
             this.btnDeleteSchedule.Name = "btnDeleteSchedule";
             this.btnDeleteSchedule.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteSchedule.TabIndex = 6;
@@ -143,7 +147,7 @@
             // 
             // btnUpdateSchedule
             // 
-            this.btnUpdateSchedule.Location = new System.Drawing.Point(655, 125);
+            this.btnUpdateSchedule.Location = new System.Drawing.Point(974, 281);
             this.btnUpdateSchedule.Name = "btnUpdateSchedule";
             this.btnUpdateSchedule.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateSchedule.TabIndex = 7;
@@ -221,34 +225,66 @@
             // 
             // textBoxBudget
             // 
-            this.textBoxBudget.Location = new System.Drawing.Point(441, 50);
+            this.textBoxBudget.Location = new System.Drawing.Point(632, 131);
             this.textBoxBudget.Name = "textBoxBudget";
             this.textBoxBudget.Size = new System.Drawing.Size(100, 21);
             this.textBoxBudget.TabIndex = 17;
             // 
             // btnSaveBudget
             // 
-            this.btnSaveBudget.Location = new System.Drawing.Point(568, 55);
+            this.btnSaveBudget.Location = new System.Drawing.Point(845, 97);
             this.btnSaveBudget.Name = "btnSaveBudget";
             this.btnSaveBudget.Size = new System.Drawing.Size(75, 23);
             this.btnSaveBudget.TabIndex = 18;
             this.btnSaveBudget.Text = "저장";
             this.btnSaveBudget.UseVisualStyleBackColor = true;
+            this.btnSaveBudget.Click += new System.EventHandler(this.btnSaveBudget_Click);
             // 
             // labelBudgetStatus
             // 
             this.labelBudgetStatus.AutoSize = true;
-            this.labelBudgetStatus.Location = new System.Drawing.Point(328, 53);
+            this.labelBudgetStatus.Location = new System.Drawing.Point(297, 53);
             this.labelBudgetStatus.Name = "labelBudgetStatus";
             this.labelBudgetStatus.Size = new System.Drawing.Size(29, 12);
             this.labelBudgetStatus.TabIndex = 19;
             this.labelBudgetStatus.Text = "      ";
+            // 
+            // btnIncreaseBudget
+            // 
+            this.btnIncreaseBudget.Location = new System.Drawing.Point(632, 97);
+            this.btnIncreaseBudget.Name = "btnIncreaseBudget";
+            this.btnIncreaseBudget.Size = new System.Drawing.Size(75, 23);
+            this.btnIncreaseBudget.TabIndex = 20;
+            this.btnIncreaseBudget.Text = "+";
+            this.btnIncreaseBudget.UseVisualStyleBackColor = true;
+            this.btnIncreaseBudget.Click += new System.EventHandler(this.btnIncreaseBudget_Click);
+            // 
+            // btnDecreaseBudget
+            // 
+            this.btnDecreaseBudget.Location = new System.Drawing.Point(744, 97);
+            this.btnDecreaseBudget.Name = "btnDecreaseBudget";
+            this.btnDecreaseBudget.Size = new System.Drawing.Size(75, 23);
+            this.btnDecreaseBudget.TabIndex = 21;
+            this.btnDecreaseBudget.Text = "-";
+            this.btnDecreaseBudget.UseVisualStyleBackColor = true;
+            this.btnDecreaseBudget.Click += new System.EventHandler(this.btnDecreaseBudget_Click_1);
+            // 
+            // numericBudgetStep
+            // 
+            this.numericBudgetStep.Location = new System.Drawing.Point(791, 135);
+            this.numericBudgetStep.Name = "numericBudgetStep";
+            this.numericBudgetStep.Size = new System.Drawing.Size(120, 21);
+            this.numericBudgetStep.TabIndex = 22;
+            this.numericBudgetStep.ValueChanged += new System.EventHandler(this.numericBudgetStep_ValueChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1191, 723);
+            this.Controls.Add(this.numericBudgetStep);
+            this.Controls.Add(this.btnDecreaseBudget);
+            this.Controls.Add(this.btnIncreaseBudget);
             this.Controls.Add(this.labelBudgetStatus);
             this.Controls.Add(this.btnSaveBudget);
             this.Controls.Add(this.textBoxBudget);
@@ -271,6 +307,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericBudgetStep)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,6 +336,9 @@
         private System.Windows.Forms.TextBox textBoxBudget;
         private System.Windows.Forms.Button btnSaveBudget;
         private System.Windows.Forms.Label labelBudgetStatus;
+        private System.Windows.Forms.Button btnIncreaseBudget;
+        private System.Windows.Forms.Button btnDecreaseBudget;
+        private System.Windows.Forms.NumericUpDown numericBudgetStep;
     }
 }
 

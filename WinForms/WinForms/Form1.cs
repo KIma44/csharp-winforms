@@ -133,26 +133,29 @@ namespace WinForms
 
             if (_isGuest)
             {
-                // 비회원
                 labelTotalCost.Visible = false;
-                labelBudgetStatus.Visible = false; // 예산 숨김
-                btnLogout.Visible = false;  // 로그아웃 숨김
-                btnLogin.Visible = true;    // 로그인 보이기
+                labelBudgetStatus.Visible = false;
+                btnLogout.Visible = false;
+                btnLogin.Visible = true;
             }
             else
             {
-                // 회원
                 labelTotalCost.Visible = true;
+                labelBudgetStatus.Visible = true; // 반드시 표시
                 LoadTotalCost();
+                CheckBudgetWarning();
 
-                btnLogout.Visible = true;   // 로그아웃 보이기
-                btnLogin.Visible = false;   // 로그인 숨김
+                btnLogout.Visible = true;
+                btnLogin.Visible = false;
             }
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            listViewSchedule.Columns[0].TextAlign = HorizontalAlignment.Center;
+            listViewSchedule.Columns[1].TextAlign = HorizontalAlignment.Center;
+            listViewSchedule.Columns[2].TextAlign = HorizontalAlignment.Center;
 
             listViewSchedule.CheckBoxes = true;
             listViewSchedule.FullRowSelect = true;
@@ -169,7 +172,11 @@ namespace WinForms
             {
                 LoadSchedules(monthCalendar1.SelectionStart);
                 LoadTotalCost();
+                LoadMonthlyBudget();   // 해당 달 예산 불러오기
+                CheckBudgetWarning();  // 예산 상태 표시
             }
+
+
 
             UpdateUI();
         }
@@ -570,8 +577,18 @@ namespace WinForms
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new Home().Show();
+            DialogResult result = MessageBox.Show(
+                "Home으로 이동하시겠습니까?",
+                "확인",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+    );
+
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();              
+                new Home().Show();        
+            }
         }
 
         private void textBoxCost_KeyPress(object sender, KeyPressEventArgs e)
@@ -632,14 +649,15 @@ namespace WinForms
         {
             if (_isGuest)
             {
-                labelBudgetStatus.Visible = false; // 비회원이면 숨김
+                labelBudgetStatus.Visible = false;
                 return;
             }
+
+            labelBudgetStatus.Visible = true; // 항상 표시
 
             using (MySqlConnection conn = new MySqlConnection(connStr))
             {
                 conn.Open();
-
                 DateTime selected = dateTimePicker1.Value;
 
                 string sql = @"
@@ -657,17 +675,12 @@ namespace WinForms
                 object result = cmd.ExecuteScalar();
                 int total = (result != DBNull.Value) ? Convert.ToInt32(result) : 0;
 
-                // 예산이 0이면 표시 안함
                 if (_monthlyBudget <= 0)
                 {
-                    labelBudgetStatus.Text = "";
-                    labelBudgetStatus.Visible = false;
-                    return;
+                    labelBudgetStatus.Text = "예산이 설정되지 않았습니다";
+                    labelBudgetStatus.ForeColor = Color.Black;
                 }
-
-                labelBudgetStatus.Visible = true;
-
-                if (total > _monthlyBudget)
+                else if (total > _monthlyBudget)
                 {
                     labelBudgetStatus.Text = "⚠ 예산을 초과했습니다!";
                     labelBudgetStatus.ForeColor = Color.Red;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignUp));
             this.btnSignUp = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,6 +38,8 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtPw = new System.Windows.Forms.TextBox();
             this.txtPw2 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSignUp
@@ -114,12 +117,24 @@
             this.txtPw2.TabIndex = 8;
             this.txtPw2.UseSystemPasswordChar = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(530, 334);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(52, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // SignUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(572, 378);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtPw2);
             this.Controls.Add(this.txtPw);
             this.Controls.Add(this.txtEmail);
@@ -132,6 +147,7 @@
             this.Name = "SignUp";
             this.Text = "SignUp";
             this.Load += new System.EventHandler(this.SignUp_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,5 +164,6 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtPw;
         private System.Windows.Forms.TextBox txtPw2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

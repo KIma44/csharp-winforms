@@ -53,13 +53,18 @@
             this.btnIncreaseBudget = new System.Windows.Forms.Button();
             this.btnDecreaseBudget = new System.Windows.Forms.Button();
             this.numericBudgetStep = new System.Windows.Forms.NumericUpDown();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.날짜 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.일정 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.금액 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericBudgetStep)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(92, 223);
+            this.monthCalendar1.Location = new System.Drawing.Point(151, 223);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
             this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
@@ -74,15 +79,15 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(118, 175);
+            this.dateTimePicker1.Location = new System.Drawing.Point(151, 175);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(176, 21);
+            this.dateTimePicker1.Size = new System.Drawing.Size(220, 21);
             this.dateTimePicker1.TabIndex = 2;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // btnAddSchedule
             // 
-            this.btnAddSchedule.Location = new System.Drawing.Point(974, 197);
+            this.btnAddSchedule.Location = new System.Drawing.Point(92, 599);
             this.btnAddSchedule.Name = "btnAddSchedule";
             this.btnAddSchedule.Size = new System.Drawing.Size(75, 23);
             this.btnAddSchedule.TabIndex = 3;
@@ -100,7 +105,7 @@
             this.listViewSchedule.FullRowSelect = true;
             this.listViewSchedule.GridLines = true;
             this.listViewSchedule.HideSelection = false;
-            this.listViewSchedule.Location = new System.Drawing.Point(476, 197);
+            this.listViewSchedule.Location = new System.Drawing.Point(546, 197);
             this.listViewSchedule.Name = "listViewSchedule";
             this.listViewSchedule.Size = new System.Drawing.Size(444, 473);
             this.listViewSchedule.TabIndex = 4;
@@ -128,7 +133,7 @@
             // labelTotalCost
             // 
             this.labelTotalCost.AutoSize = true;
-            this.labelTotalCost.Location = new System.Drawing.Point(35, 108);
+            this.labelTotalCost.Location = new System.Drawing.Point(42, 108);
             this.labelTotalCost.Name = "labelTotalCost";
             this.labelTotalCost.Size = new System.Drawing.Size(59, 12);
             this.labelTotalCost.TabIndex = 5;
@@ -137,7 +142,7 @@
             // 
             // btnDeleteSchedule
             // 
-            this.btnDeleteSchedule.Location = new System.Drawing.Point(974, 362);
+            this.btnDeleteSchedule.Location = new System.Drawing.Point(358, 599);
             this.btnDeleteSchedule.Name = "btnDeleteSchedule";
             this.btnDeleteSchedule.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteSchedule.TabIndex = 6;
@@ -147,7 +152,7 @@
             // 
             // btnUpdateSchedule
             // 
-            this.btnUpdateSchedule.Location = new System.Drawing.Point(974, 281);
+            this.btnUpdateSchedule.Location = new System.Drawing.Point(222, 599);
             this.btnUpdateSchedule.Name = "btnUpdateSchedule";
             this.btnUpdateSchedule.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateSchedule.TabIndex = 7;
@@ -225,14 +230,14 @@
             // 
             // textBoxBudget
             // 
-            this.textBoxBudget.Location = new System.Drawing.Point(632, 131);
+            this.textBoxBudget.Location = new System.Drawing.Point(678, 131);
             this.textBoxBudget.Name = "textBoxBudget";
-            this.textBoxBudget.Size = new System.Drawing.Size(100, 21);
+            this.textBoxBudget.Size = new System.Drawing.Size(140, 21);
             this.textBoxBudget.TabIndex = 17;
             // 
             // btnSaveBudget
             // 
-            this.btnSaveBudget.Location = new System.Drawing.Point(845, 97);
+            this.btnSaveBudget.Location = new System.Drawing.Point(915, 82);
             this.btnSaveBudget.Name = "btnSaveBudget";
             this.btnSaveBudget.Size = new System.Drawing.Size(75, 23);
             this.btnSaveBudget.TabIndex = 18;
@@ -243,7 +248,7 @@
             // labelBudgetStatus
             // 
             this.labelBudgetStatus.AutoSize = true;
-            this.labelBudgetStatus.Location = new System.Drawing.Point(297, 53);
+            this.labelBudgetStatus.Location = new System.Drawing.Point(501, 134);
             this.labelBudgetStatus.Name = "labelBudgetStatus";
             this.labelBudgetStatus.Size = new System.Drawing.Size(29, 12);
             this.labelBudgetStatus.TabIndex = 19;
@@ -251,7 +256,7 @@
             // 
             // btnIncreaseBudget
             // 
-            this.btnIncreaseBudget.Location = new System.Drawing.Point(632, 97);
+            this.btnIncreaseBudget.Location = new System.Drawing.Point(688, 82);
             this.btnIncreaseBudget.Name = "btnIncreaseBudget";
             this.btnIncreaseBudget.Size = new System.Drawing.Size(75, 23);
             this.btnIncreaseBudget.TabIndex = 20;
@@ -261,7 +266,7 @@
             // 
             // btnDecreaseBudget
             // 
-            this.btnDecreaseBudget.Location = new System.Drawing.Point(744, 97);
+            this.btnDecreaseBudget.Location = new System.Drawing.Point(797, 82);
             this.btnDecreaseBudget.Name = "btnDecreaseBudget";
             this.btnDecreaseBudget.Size = new System.Drawing.Size(75, 23);
             this.btnDecreaseBudget.TabIndex = 21;
@@ -271,17 +276,47 @@
             // 
             // numericBudgetStep
             // 
-            this.numericBudgetStep.Location = new System.Drawing.Point(791, 135);
+            this.numericBudgetStep.Location = new System.Drawing.Point(870, 132);
             this.numericBudgetStep.Name = "numericBudgetStep";
             this.numericBudgetStep.Size = new System.Drawing.Size(120, 21);
             this.numericBudgetStep.TabIndex = 22;
             this.numericBudgetStep.ValueChanged += new System.EventHandler(this.numericBudgetStep_ValueChanged);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.날짜,
+            this.일정,
+            this.금액});
+            this.dataGridView1.Location = new System.Drawing.Point(599, 197);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(339, 473);
+            this.dataGridView1.TabIndex = 23;
+            // 
+            // 날짜
+            // 
+            this.날짜.HeaderText = "날짜";
+            this.날짜.Name = "날짜";
+            // 
+            // 일정
+            // 
+            this.일정.HeaderText = "일정";
+            this.일정.Name = "일정";
+            // 
+            // 금액
+            // 
+            this.금액.HeaderText = "금액";
+            this.금액.Name = "금액";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1191, 723);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.numericBudgetStep);
             this.Controls.Add(this.btnDecreaseBudget);
             this.Controls.Add(this.btnIncreaseBudget);
@@ -308,6 +343,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericBudgetStep)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -339,6 +375,10 @@
         private System.Windows.Forms.Button btnIncreaseBudget;
         private System.Windows.Forms.Button btnDecreaseBudget;
         private System.Windows.Forms.NumericUpDown numericBudgetStep;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 날짜;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 일정;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 금액;
     }
 }
 

@@ -83,5 +83,21 @@ namespace WinForms
         {
 
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Home으로 이동하시겠습니까?",
+                "확인",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+    );
+
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();              // 현재 폼 숨기기
+                new Home().Show();        // Home 폼 열기
+            }
+        }
     }
 }
